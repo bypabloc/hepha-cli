@@ -66,6 +66,14 @@ hepha-cli/
 ├── requirements.txt       # Dependencias del proyecto
 └── setup.py               # Script de instalación
 
+## Trabajar con Hepha-CLI
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
 
 ## Licencia
 

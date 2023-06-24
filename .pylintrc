@@ -1,0 +1,72 @@
+[MASTER]
+# Inicializa sys.path con el directorio del proyecto actual
+init-hook='import sys; sys.path.append(".")'
+
+# Carga el plugin de McCabe para calcular la complejidad ciclomática del código
+load-plugins=pylint.extensions.mccabe
+
+[MESSAGES CONTROL]
+# Deshabilita los mensajes de "falta de docstring", "nombre inválido", 
+# "demasiados argumentos", "demasiados locales", "código duplicado", "sin uso propio"
+disable=
+    missing-docstring,
+    invalid-name,
+    too-few-public-methods,
+    too-many-arguments,
+    too-many-locals,
+    duplicate-code,
+    no-self-use
+
+[DESIGN]
+# Define el número máximo de clases base que una clase puede tener
+max-parents=7
+
+[FORMAT]
+# Define la longitud máxima de una línea de código
+max-line-length=79
+
+# Define el string utilizado para el indentado
+indent-string='    '
+
+# Define el número máximo de líneas en un módulo
+max-module-lines=1000
+
+# Define el formato de fin de línea esperado
+expected-line-ending-format=
+
+[SIMILARITIES]
+# Define el número mínimo de líneas idénticas para que se considere duplicación de código
+min-similarity-lines=4
+
+[TYPECHECK]
+# Ignora los miembros de los mixins cuando se realiza la comprobación de tipos
+ignore-mixin-members=yes
+
+# Define las clases que se deben ignorar durante la comprobación de tipos
+ignored-classes=
+
+# Define los miembros generados que se deben ignorar durante la comprobación de tipos
+generated-members=
+
+[BASIC]
+module-naming-style=snake_case # Define el estilo de nomenclatura para los módulos
+const-naming-style=UPPER_CASE # Define el estilo de nomenclatura para las constantes
+class-naming-style=PascalCase # Define el estilo de nomenclatura para las clases
+function-naming-style=snake_case # Define el estilo de nomenclatura para las funciones
+method-naming-style=snake_case # Define el estilo de nomenclatura para los métodos
+attr-naming-style=snake_case # Define el estilo de nomenclatura para los atributos
+argument-naming-style=snake_case # Define el estilo de nomenclatura para los argumentos
+variable-naming-style=snake_case # Define el estilo de nomenclatura para las variables
+class-attribute-naming-style=snake_case # Define el estilo de nomenclatura para los atributos de clase
+inlinevar-naming-style=snake_case # Define el estilo de nomenclatura para las variables en línea
+
+[MISCELLANEOUS]
+# Define las notas que se deben resaltar en los comentarios
+notes=FIXME,XXX,TODO
+
+[REPORTS]
+output-format=text  # Formato de salida.
+files-output=no  # Escribe los mensajes en un archivo de salida.
+reports=no  # Genera o no informes.
+# Define la fórmula utilizada para evaluar el código
+evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)
