@@ -19,12 +19,12 @@ setup(
         [console_scripts]
         hepha=hepha.cli:cli
     ''',
-    author='Your Name',
-    author_email='your.email@example.com',
+    author='Pablo Contreras (bypabloc)',
+    author_email='pacg1991@gmail.com',
     description='Hepha CLI: Una herramienta de desarrollo para la creación y gestión de API Gateway en AWS.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/hepha-cli',
+    url='https://github.com/bypabloc/hepha-cli',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
