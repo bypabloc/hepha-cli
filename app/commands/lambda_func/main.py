@@ -1,4 +1,4 @@
-from utils.base_command import BaseCommand
+from app.utils.base_command import BaseCommand
 
 
 class Main(BaseCommand):

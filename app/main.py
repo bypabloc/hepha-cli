@@ -1,15 +1,15 @@
 import argparse
 
-from utils.get_name_dirs_from_dir import get_name_dirs_from_dir
-from utils.get_file_from_dir import get_file_from_dir
-from utils.import_file_dynamically import import_module_dynamically
+from app.utils.get_name_dirs_from_dir import get_name_dirs_from_dir
+from app.utils.get_file_from_dir import get_file_from_dir
+from app.utils.import_file_dynamically import import_module_dynamically
 
 
 def cli():
     """Herramienta para crear funciones lambda en AWS"""
     parser = argparse.ArgumentParser(description=cli.__doc__)
 
-    names_commands = get_name_dirs_from_dir('commands')
+    names_commands = get_name_dirs_from_dir('app/commands')
     parser.add_argument(
         'command',
         type=str,
@@ -34,7 +34,7 @@ def cli():
         print(names_commands)
         return
     
-    file = get_file_from_dir(f'commands/{command}/main.py')
+    file = get_file_from_dir(f'app/commands/{command}/main.py')
 
     Module = import_module_dynamically(file)
 
