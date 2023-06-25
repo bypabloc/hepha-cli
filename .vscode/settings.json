@@ -3,5 +3,6 @@
   "python.linting.pylintEnabled": true,
   "editor.formatOnSave": true,
   "python.linting.enabled": true,
-  "cSpell.words": ["Hepha"]
+  "python.linting.pylintPath": ".venv/bin/pylint",
+  "cSpell.words": ["hepha", "Hepha", "hephaestus"]
 }

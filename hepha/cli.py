@@ -1,40 +1,46 @@
-import click
+import argparse
 
-@click.group()
+from utils.get_name_dirs_from_dir import get_name_dirs_from_dir
+from utils.get_file_from_dir import get_file_from_dir
+from utils.import_file_dynamically import import_module_dynamically
+
+
 def cli():
-    """
-    Hepha-CLI (abreviatura de Hephaestus Command Line Interface),
-    inspirado en Hephaestus, el legendario dios griego de la forja
-    y el fuego, es una herramienta para simplificar y optimizar su
-    interacción con AWS CLI v2. 
-    """
-    pass
+    """Herramienta para crear funciones lambda en AWS"""
+    parser = argparse.ArgumentParser(description=cli.__doc__)
 
-@click.command()
-def create_api():
-    """Crea una nueva API Gateway."""
-    click.echo("Creando API Gateway...")
+    names_commands = get_name_dirs_from_dir('commands')
+    parser.add_argument(
+        'command',
+        type=str,
+        help='an integer for the accumulator',
+    )
+    print(names_commands)
 
-@click.command()
-def modify_api():
-    """Modifica una API Gateway existente."""
-    click.echo("Modificando API Gateway...")
+    args = parser.parse_args()
 
-@click.command()
-def create_websocket_api():
-    """Crea una nueva WebSocket API Gateway."""
-    click.echo("Creando WebSocket API Gateway...")
+    args = vars(args)
+    print(args)
 
-@click.command()
-def modify_websocket_api():
-    """Modifica una WebSocket API Gateway existente."""
-    click.echo("Modificando WebSocket API Gateway...")
+    command = args.get('command')
 
-# Agrega los comandos al grupo cli
-cli.add_command(create_api)
-cli.add_command(modify_api)
-cli.add_command(create_websocket_api)
-cli.add_command(modify_websocket_api)
+    if not command:
+        print('Debe ingresar un comando')
+        return
+
+    if command not in names_commands:
+        print('El comando ingresado no existe')
+        print('Los comandos disponibles son:')
+        print(names_commands)
+        return
+    
+    file = get_file_from_dir(f'commands/{command}/main.py')
+
+    Module = import_module_dynamically(file)
+
+    class_executed = Module()
+    class_executed.handle()
+
 
 # Punto de entrada principal
 if __name__ == "__main__":

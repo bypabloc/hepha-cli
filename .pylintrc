@@ -1,6 +1,8 @@
 [MASTER]
 # Inicializa sys.path con el directorio del proyecto actual
-init-hook='import sys; sys.path.append(".")'
+# init-hook='import sys; sys.path.append(".")'
+init-hook="from pylint.config import find_pylintrc;
+import os, sys; sys.path.append(os.path.dirname(find_pylintrc()))"
 
 # Carga el plugin de McCabe para calcular la complejidad ciclomática del código
 load-plugins=pylint.extensions.mccabe
@@ -14,8 +16,8 @@ disable=
     too-few-public-methods,
     too-many-arguments,
     too-many-locals,
-    duplicate-code,
-    no-self-use
+    duplicate-code
+    # no-self-use
 
 [DESIGN]
 # Define el número máximo de clases base que una clase puede tener
@@ -66,7 +68,7 @@ notes=FIXME,XXX,TODO
 
 [REPORTS]
 output-format=text  # Formato de salida.
-files-output=no  # Escribe los mensajes en un archivo de salida.
+# files-output=no  # Escribe los mensajes en un archivo de salida.
 reports=no  # Genera o no informes.
 # Define la fórmula utilizada para evaluar el código
 evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)
